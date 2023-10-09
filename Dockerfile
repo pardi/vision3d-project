@@ -15,7 +15,8 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-RUN apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y \
         software-properties-common \
         curl \
         gnupg2 && \
@@ -27,14 +28,14 @@ RUN apt-get install -y \
         build-essential \
         cmake \
         git \
-        iproute2 \
+        iproute2 && \
     rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash user \
     && echo "user:user" | chpasswd \
     && usermod -aG sudo user \
     && echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/user \
-    && usermod --uid 1000 user 
+    && usermod --uid 1000 user \
     && usermod --gid 1000 user   
 
 USER user
