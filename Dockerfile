@@ -28,7 +28,9 @@ RUN apt-get update && \
         build-essential \
         cmake \
         git \
-        iproute2 && \
+        iproute2 \
+        ros-${ROS_DISTRO}-ros-core \
+        ros-dev-tools && \
     rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash user \
