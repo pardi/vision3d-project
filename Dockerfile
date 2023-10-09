@@ -30,7 +30,13 @@ RUN apt-get update && \
         git \
         iproute2 \
         ros-${ROS_DISTRO}-ros-core \
-        ros-dev-tools && \
+        ros-dev-tools 
+
+
+RUN apt-get update && \
+    apt-get install -y  \
+    ros-${ROS_DISTRO}-rviz2 \
+    ros-${ROS_DISTRO}-rplidar-ros && \
     rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash user \
